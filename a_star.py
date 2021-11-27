@@ -34,7 +34,6 @@ def neighborfinder (pos,map):
 
 def astar(grid):
     skipper = 0
-    path = []
     start = grid.start 
     end = grid.end
     map = grid.get_map()
@@ -54,7 +53,6 @@ def astar(grid):
     #print(sorted(key_value.items(), key = lambda kv:(kv[1], kv[0])))
     while (len(open_list.keys())!=0):
         cur=sorted(open_list.items(), key = lambda kv:(kv[1].f))[0][1]
-        print (cur)
         closed_list[str(cur.pos)] = cur 
         del open_list[str(cur.pos)]
         if cur.pos == end:
@@ -90,17 +88,16 @@ def astar(grid):
         
         grid.mark_open(open_list)
         grid.mark_closed(closed_list)
-
-        grid.draw_grid()
         worker=cur
+        path = []
         while worker.np !=0:
+
             path.append(worker.np)  
             worker=closed_list[str(worker.np)]
             if worker.np == worker.pos:
                 print(5/0)
             grid.mark_path(path)
-        skipper +=1
-        
+        grid.draw_grid()        
     # print (ending.pos)
     # worker=ending
     # working=ending
