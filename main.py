@@ -1,11 +1,5 @@
 from a_star import *
-MAP = [[0,0,0,0,0],
-       [0,0,-1,0,0],
-       [0,0,-1,0,0],
-       [0,0,-1,0,0],
-       [0,0,-1,0,0]]
-
-START = [0,0]
-END = [3,4]
-
-astar(START,END,MAP)
+from visualizer import *
+grid = Grid(10,10)
+grid.initialize_grid()
+astar(grid)
