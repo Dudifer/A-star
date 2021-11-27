@@ -8,11 +8,12 @@ class Node:
         self.g = g
         self.h = h
         self.np = np
+#returns distance between position and end
 def diff(pos1,pos2):
     d1 = abs(pos1[0]-pos2[0])
     d2 = abs(pos1[1]-pos2[1])
     return d1+d2
-
+#returns valid neighbors of current node position
 def neighborfinder (pos,map):
     maprows=len(map)
     mapcols=len(map[0])
@@ -28,9 +29,6 @@ def neighborfinder (pos,map):
                 if map[x[0]][x[1]]!= -1:    
                     realneighbors.append(x)
     return realneighbors
-
-
-
 
 def astar(grid):
     skipper = .001
@@ -83,7 +81,7 @@ def astar(grid):
         closed_list_keys = list(open_list.keys())
         #print("Open list keys are: "+(str)(open_list_keys))
         #print("Closed list keys are: "+(str)(closed_list_keys))
-           
+          
 
         
         grid.mark_open(open_list)
@@ -98,15 +96,18 @@ def astar(grid):
                 print(5/0)
             grid.mark_path(path)
         grid.draw_grid()        
-    print (ending.pos)
     worker=ending
     working=ending
-    while worker.np !=0:
-        worker=closed_list[str(working.np)]
-        if worker.np == worker.pos:
-            print(5/0)
-        print(worker.pos)
-        working = worker
+    if cur != ending:
+            print("No possible path :(")
+    else:
+        print (ending.pos)
+        while worker.np !=0:
+            worker=closed_list[str(working.np)]
+            if worker.np == worker.pos:
+                print(5/0)
+            print(worker.pos)
+            working = worker
     while skipper>0:
         skipper+=.001
         end_program=input('Would you like to end program? y or n:')
