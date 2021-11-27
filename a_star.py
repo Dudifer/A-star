@@ -33,7 +33,7 @@ def neighborfinder (pos,map):
 
 
 def astar(grid):
-    skipper = 0
+    skipper = .001
     start = grid.start 
     end = grid.end
     map = grid.get_map()
@@ -98,16 +98,20 @@ def astar(grid):
                 print(5/0)
             grid.mark_path(path)
         grid.draw_grid()        
-    # print (ending.pos)
-    # worker=ending
-    # working=ending
-    # while worker.np !=0:
-    #     worker=closed_list[str(working.np)]
-    #     if worker.np == worker.pos:
-    #         print(5/0)
-    #     path.append(worker.np)
-    #     working = worker
-        
+    print (ending.pos)
+    worker=ending
+    working=ending
+    while worker.np !=0:
+        worker=closed_list[str(working.np)]
+        if worker.np == worker.pos:
+            print(5/0)
+        print(worker.pos)
+        working = worker
+    while skipper>0:
+        skipper+=.001
+        end_program=input('Would you like to end program? y or n:')
+        if end_program=='y':
+            skipper=0
     
         
     
