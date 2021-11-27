@@ -56,20 +56,16 @@ def astar(grid):
         cur=sorted(open_list.items(), key = lambda kv:(kv[1].f))[0][1]
         print (cur)
         closed_list[str(cur.pos)] = cur 
-        path.append(cur.pos)
         del open_list[str(cur.pos)]
         if cur.pos == end:
             ending = cur
             break
         neighbors = neighborfinder(cur.pos, map) 
-        open_list_keys = list(open_list.keys())
-        closed_list_keys = list(open_list.keys())
-        print("Open list keys are: "+(str)(open_list_keys))
-        print("Closed list keys are: "+(str)(closed_list_keys))
+
         
         for x in neighbors:
             if str(x) in closed_list:
-                pass
+                continue
             if str(x) in open_list:
                 if open_list[str(x)].g>cur.g+1:
                     cg = cur.g+1
@@ -87,32 +83,33 @@ def astar(grid):
                 open_list[str(x)] = neighbor
         open_list_keys = list(open_list.keys())
         closed_list_keys = list(open_list.keys())
-        print("Open list keys are: "+(str)(open_list_keys))
-        print("Closed list keys are: "+(str)(closed_list_keys))
-        worker=cur
-        while worker.np !=0:
-            path.append(worker.np)  
-            worker=closed_list[str(worker.np)]
-            if worker.np == worker.pos:
-                print(5/0)
-            grid.mark_path(path)   
+        #print("Open list keys are: "+(str)(open_list_keys))
+        #print("Closed list keys are: "+(str)(closed_list_keys))
+           
 
         
         grid.mark_open(open_list)
         grid.mark_closed(closed_list)
 
         grid.draw_grid()
+        worker=cur
+        while worker.np !=0:
+            path.append(worker.np)  
+            worker=closed_list[str(worker.np)]
+            if worker.np == worker.pos:
+                print(5/0)
+            grid.mark_path(path)
         skipper +=1
         
-    print (ending.pos)
-    worker=ending
-    working=ending
-    while worker.np !=0:
-        worker=closed_list[str(working.np)]
-        if worker.np == worker.pos:
-            print(5/0)
-        path.append(worker.np)
-        working = worker
+    # print (ending.pos)
+    # worker=ending
+    # working=ending
+    # while worker.np !=0:
+    #     worker=closed_list[str(working.np)]
+    #     if worker.np == worker.pos:
+    #         print(5/0)
+    #     path.append(worker.np)
+    #     working = worker
         
     
         

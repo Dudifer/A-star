@@ -208,7 +208,7 @@ class Grid:
 
 
     def mark_path(self, path):
-        print (path)
+        #print (path)
         for pos in path:
             self.grid[pos[0]][pos[1]] = 5
 
