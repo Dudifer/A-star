@@ -53,9 +53,6 @@ def astar(grid):
         cur=sorted(open_list.items(), key = lambda kv:(kv[1].f))[0][1]
         closed_list[str(cur.pos)] = cur 
         del open_list[str(cur.pos)]
-        if cur.pos == end:
-            ending = cur
-            break
         neighbors = neighborfinder(cur.pos, map) 
 
         
@@ -89,13 +86,17 @@ def astar(grid):
         worker=cur
         path = []
         while worker.np !=0:
-
+            path.append(worker.pos)
             path.append(worker.np)  
             worker=closed_list[str(worker.np)]
             if worker.np == worker.pos:
                 print(5/0)
             grid.mark_path(path)
-        grid.draw_grid()        
+        grid.draw_grid()
+        if cur.pos == end:
+            ending = cur
+            break
+            
     worker=ending
     working=ending
     if cur != ending:
