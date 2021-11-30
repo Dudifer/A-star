@@ -29,7 +29,7 @@ def neighborfinder (pos,map):
                 if map[x[0]][x[1]]!= -1:    
                     realneighbors.append(x)
     return realneighbors
-
+#finds shortest path between two objects and implements Grid functions
 def astar(grid):
     skipper = .001
     start = grid.start 
